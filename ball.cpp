@@ -2,7 +2,7 @@
 #include <cmath>
 
 float ballX = 120.0f;
-float ballY = 410.0f;
+float ballY = 415.0f; // 400 (stair height) + 15 (ball radius)
 float ballR = 15.0f;
 
 void drawStairs() {
@@ -41,19 +41,54 @@ void display() {
 }
 
 void update(int value) {
-    ballX += 1.0f;
-    if (ballX > 320.0f) {
+    // Move across Step 1
+    if (ballX < 150.0f) {
+        ballX += 1.0f;
+        if (ballX > 150.0f) ballX = 150.0f;
+    } 
+    // Fall down Drop 1
+    else if (ballY > 365.0f) {
+        ballY -= 2.0f;
+        if (ballY < 365.0f) ballY = 365.0f;
+    } 
+    // Move across Step 2
+    else if (ballX < 200.0f) {
+        ballX += 1.0f;
+        if (ballX > 200.0f) ballX = 200.0f;
+    } 
+    // Fall down Drop 2
+    else if (ballY > 315.0f) {
+        ballY -= 2.0f;
+        if (ballY < 315.0f) ballY = 315.0f;
+    } 
+    // Move across Step 3
+    else if (ballX < 250.0f) {
+        ballX += 1.0f;
+        if (ballX > 250.0f) ballX = 250.0f;
+    } 
+    // Fall down Drop 3
+    else if (ballY > 265.0f) {
+        ballY -= 2.0f;
+        if (ballY < 265.0f) ballY = 265.0f;
+    } 
+    // Move across Step 4
+    else if (ballX < 300.0f) {
+        ballX += 1.0f;
+        if (ballX > 300.0f) ballX = 300.0f;
+    } 
+    // Fall down Drop 4
+    else if (ballY > 215.0f) {
+        ballY -= 2.0f;
+        if (ballY < 215.0f) ballY = 215.0f;
+    } 
+    // Move across Step 5, then reset
+    else if (ballX < 330.0f) {
+        ballX += 1.0f;
+    } else {
         ballX = 120.0f;
-        ballY = 410.0f;
-    } else if (ballX > 270.0f) {
-        ballY = 225.0f;
-    } else if (ballX > 220.0f) {
-        ballY = 275.0f;
-    } else if (ballX > 170.0f) {
-        ballY = 325.0f;
-    } else if (ballX > 120.0f) {
-        ballY = 375.0f;
+        ballY = 415.0f;
     }
+
     glutPostRedisplay();
     glutTimerFunc(30, update, 0);
 }
